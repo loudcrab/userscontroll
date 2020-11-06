@@ -2,6 +2,8 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://loudcrab.github.io/userscontroll/",
+  "deploy": "gh-pages -d build",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@material-ui/core": "^4.11.0",
@@ -165,10 +167,5 @@
         }
       ]
     ]
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.12.1",
-    "mobx": "^5.15.7",
-    "mobx-react": "^6.3.1"
   }
 }
