@@ -1,3 +1,11 @@
+TODO LIST: 
+1) Дезигн
+2) Добавление кастомных атрибутов для отдельных сотрудников
+3) Добавить всю логику работы со стором в редусер/в mobx
+4) Исправить баги
+5) Сделать полный код ревью
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
