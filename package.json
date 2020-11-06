@@ -39,6 +39,7 @@
     "eslint-plugin-testing-library": "^3.9.2",
     "eslint-webpack-plugin": "^2.1.0",
     "file-loader": "6.1.1",
+    "final-form": "^4.20.1",
     "fontsource-roboto": "^3.0.3",
     "fs-extra": "^9.0.1",
     "html-webpack-plugin": "4.5.0",
@@ -48,6 +49,7 @@
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
     "mini-css-extract-plugin": "0.11.3",
+    "nodemon": "^2.0.6",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.2.1",
@@ -59,6 +61,7 @@
     "react-app-polyfill": "^2.0.0",
     "react-dev-utils": "^11.0.0",
     "react-dom": "^17.0.1",
+    "react-final-form": "^6.5.2",
     "react-refresh": "^0.8.3",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
@@ -76,7 +79,7 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "nodemon scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
@@ -155,15 +158,17 @@
       "react-app"
     ],
     "plugins": [
-  		[
-  			"@babel/plugin-proposal-decorators",
-  			{ "legacy": true }
-  		]
-	  ]
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ]
+    ]
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.12.1",
-    "mobx": "^6.0.2",
-    "mobx-react": "^7.0.0"
+    "mobx": "^5.15.7",
+    "mobx-react": "^6.3.1"
   }
 }

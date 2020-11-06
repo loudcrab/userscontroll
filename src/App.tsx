@@ -1,13 +1,15 @@
-import Box from '@material-ui/core/Box/Box';
-import Button from '@material-ui/core/Button/Button';
 import React from 'react';
+import { Main } from './Components/Main';
+import { UsersProvider } from './store/users';
 
 function App() {
-  return (
-    <div className="App">
-     
-    </div>
-  );
+	return (
+		<UsersProvider>
+			<div className="App">
+				<Main />
+			</div>
+		</UsersProvider>
+	);
 }
 
 export default App;
