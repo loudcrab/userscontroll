@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 
 import { Box, Input, MenuItem, Select, TextField, Checkbox, ListItemText, Grid, InputLabel } from '@material-ui/core';
-import { Form, Field } from 'react-final-form';
+
 import { positionOptions, sexOptions, useUsersContext } from '../store/users';
 import { users, user } from '../store/types';
+
 export const List = () => {
 	return (
 		<Box width="100%">
@@ -13,50 +14,58 @@ export const List = () => {
 };
 
 const Users = () => {
-	const { usersState: users, setUsersState: setUsers, selectedUser, setSelectedUser} = useUsersContext();
+	const { users, updateUser, fetchUsers, selectedUser, selectUser } = useUsersContext();
 
+	useEffect(() => {
+		fetchUsers();
+	}, []);
 	const changeField = ({ key, value }: { key: string; value: any }) => {
-		if(!users.length) return 
-		console.log('selected',)
-		const idx = users.findIndex(({ id }:{id: number}) => id === selectedUser?.id)
-		setUsers((users: users) => {
-			users[idx][key] = value;
-			users[idx].edit = true;
-			return [ ...users ];
-		});
+		if (!users.length) return;
+		updateUser({ key, value });
 	};
-	
+
+	if (!users) return <Box>Loading</Box>;
+
 	return (
 		<Grid container spacing={8}>
 			<Grid item xs={6}>
 				{users.map((item: user, idx: number) => {
-					return <MenuItem onClick={(e) => {
-						console.log('users[idx]',users[idx])
-						setSelectedUser(users[idx])
-					}} key={idx}>{idx+1}. {item.name}</MenuItem>;
+					return (
+						<MenuItem
+							onClick={(e) => {
+								selectUser(idx);
+							}}
+							key={idx}
+						>
+							{idx + 1}. {item.name}
+						</MenuItem>
+					);
 				})}
 			</Grid>
 			<Grid item xs={6}>
-				{selectedUser.id !== -1 ? <User
-					selectedUser={selectedUser}
-					changeField={({ key, value }: { key: string; value: any }) => changeField({ key, value })}
-					{...selectedUser}
-				/>: 'Выберите сотрудника или создайте нового'}
+				{selectedUser.id !== -1 ? (
+					<User
+						selectedUser={selectedUser}
+						changeField={({ key, value }: { key: string; value: any }) => changeField({ key, value })}
+						{...selectedUser}
+					/>
+				) : (
+					'Выберите сотрудника или создайте нового'
+				)}
 			</Grid>
 		</Grid>
 	);
 };
 
-const User = ({changeField, selectedUser}: {changeField: Function; selectedUser: any}) => {
-	const {id, name, position, birthday, sex, fired, сolleagues} = selectedUser
-	console.log('id', id)
+const User = ({ changeField, selectedUser }: { changeField: Function; selectedUser: any }) => {
+	const { id, name, position, birthday, sex, fired, сolleagues } = selectedUser;
 	return (
-		<Box display="flex" width="100%" flexDirection='column'>
-			<Box >
-	<InputLabel >id: {id}</InputLabel>			
+		<Box display="flex" width="100%" flexDirection="column">
+			<Box>
+				<InputLabel>id: {id}</InputLabel>
 			</Box>
-			<Box paddingTop='8px'>
-			<InputLabel >Имя</InputLabel>
+			<Box paddingTop="8px">
+				<InputLabel>Имя</InputLabel>
 				<Input
 					value={name}
 					onChange={(e) => {
@@ -64,8 +73,8 @@ const User = ({changeField, selectedUser}: {changeField: Function; selectedUser:
 					}}
 				/>
 			</Box>
-			<Box  paddingTop='8px'>
-			<InputLabel >Должность</InputLabel>
+			<Box paddingTop="8px">
+				<InputLabel>Должность</InputLabel>
 				<Select
 					value={position}
 					onChange={(e) => {
@@ -79,8 +88,8 @@ const User = ({changeField, selectedUser}: {changeField: Function; selectedUser:
 					))}
 				</Select>
 			</Box>
-			<Box  paddingTop='8px'>
-			<InputLabel >Пол</InputLabel>
+			<Box paddingTop="8px">
+				<InputLabel>Пол</InputLabel>
 				<Select
 					value={sex}
 					onChange={(e) => {
@@ -94,8 +103,8 @@ const User = ({changeField, selectedUser}: {changeField: Function; selectedUser:
 					))}
 				</Select>
 			</Box>
-			<Box paddingTop='8px'>
-			<InputLabel >Дата рождения</InputLabel>
+			<Box paddingTop="8px">
+				<InputLabel>Дата рождения</InputLabel>
 				<TextField
 					id="date"
 					value={birthday}
@@ -105,8 +114,8 @@ const User = ({changeField, selectedUser}: {changeField: Function; selectedUser:
 					}}
 				/>
 			</Box>
-			<Box paddingTop='8px'>
-			<InputLabel >Уволен</InputLabel>
+			<Box paddingTop="8px">
+				<InputLabel>Уволен</InputLabel>
 				<Checkbox
 					value={fired}
 					onChange={(e) => {
@@ -115,26 +124,38 @@ const User = ({changeField, selectedUser}: {changeField: Function; selectedUser:
 				/>
 			</Box>
 
-			<Box paddingTop='8px'>
-			<InputLabel >Коллеги</InputLabel>
-				<SelectColleagues  сolleagues={сolleagues} onChange={changeField} />
+			<Box paddingTop="8px">
+				<InputLabel>Коллеги</InputLabel>
+				<SelectColleagues сolleagues={сolleagues} onChange={changeField} />
+			</Box>
+			<Box paddingTop="8px">
+				<InputLabel />
+				<CustomPropsBlock  />
 			</Box>
 		</Box>
 	);
 };
 
-const SelectColleagues = ({сolleagues, onChange}: {сolleagues: Array<string>; onChange: Function}) => {
-	const { usersState: users, selectedUser} = useUsersContext();
+const SelectColleagues = ({ сolleagues, onChange }: { сolleagues: Array<string>; onChange: Function }) => {
+	const { users, selectedUser } = useUsersContext();
 	const usersList = useMemo(() => users.map(({ name }: { name: string }) => name), [ users ]);
-	const [ personName, setPersonName ] = React.useState(selectedUser.сolleagues) as any;
-	
+
+	const [ personName, setPersonName ] = useState(selectedUser.сolleagues) as any;
+
+	useEffect(
+		() => {
+			setPersonName(selectedUser.сolleagues);
+		},
+		[ selectedUser ]
+	);
+
 	const handleChange = (event: any) => {
 		setPersonName(event.target.value);
-		onChange({ key: 'сolleagues', value: event.target.value })
-	};	
+		onChange({ key: 'сolleagues', value: event.target.value });
+	};
 
 	return (
-		<Select			
+		<Select
 			labelId="demo-mutiple-checkbox-label"
 			id="demo-mutiple-checkbox"
 			multiple
@@ -152,3 +173,88 @@ const SelectColleagues = ({сolleagues, onChange}: {сolleagues: Array<string>; 
 		</Select>
 	);
 };
+
+const CustomPropsBlock = () => {
+	const { updateUser, selectedUser } = useUsersContext();
+	const customProps : iCustomProps = selectedUser.customProps
+	console.log(selectedUser,)
+	const handleChange = (props: any) => {
+		updateUser({...props, customProps: true})
+	};
+
+	const Block = () => {
+		let block = [];
+		for (const key in customProps) {
+			if (Object.prototype.hasOwnProperty.call(customProps, key)) {
+				const { type, value } = customProps[key];
+
+				const component = (
+					<Box paddingTop="8px">
+						<InputLabel>{key}</InputLabel>
+						{INPUT_TYPE[type]({
+							onChange: (value: string) => handleChange({ value, key, typeOfField: type }),
+							value: value
+						})}
+					</Box>
+				);
+				block.push(component);
+			}
+		}
+		return block;
+	};
+	return (
+		<Box>
+			<InputLabel>Дополнительные параметры сотрудника</InputLabel>
+			{Block()}
+		</Box>
+	);
+};
+
+const INPUT_TYPE = {
+	string: ({ onChange, value }: input_type) => (
+		<Input
+			value={value}
+			onChange={(e) => {
+				onChange(e.target.value);
+			}}
+		/>
+	),
+	date: ({ onChange, value }: input_type) => (
+		<TextField
+			value={value}
+			type="date"
+			onChange={(e) => {
+				onChange(e.target.value);
+			}}
+		/>
+	),
+	number: ({ onChange, value }: input_type) => (
+		<Input
+			value={value}
+			onChange={(e) => {
+				onChange(e.target.value);
+			}}
+		/>
+	),
+	boolean: ({ onChange, value }: input_type) => (
+		<Checkbox
+			value={value}
+			onChange={(e) => {
+				onChange(e.target.value);
+			}}
+		/>
+	)
+};
+
+type type = 'string' | 'boolean' | 'number' | 'date';
+interface iCustomProps {
+	[key: string]: {
+		value: string;
+		type: type;
+	};
+}
+
+interface input_type {
+	onChange: Function;
+	value: string;
+}
