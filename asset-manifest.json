@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.js": "/static/js/main.ca733fc0.chunk.js",
-    "main.js.map": "/static/js/main.ca733fc0.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.9ddc20fd.js",
-    "runtime-main.js.map": "/static/js/runtime-main.9ddc20fd.js.map",
-    "static/css/2.c984a218.chunk.css": "/static/css/2.c984a218.chunk.css",
-    "static/js/2.13cc9c15.chunk.js": "/static/js/2.13cc9c15.chunk.js",
-    "static/js/2.13cc9c15.chunk.js.map": "/static/js/2.13cc9c15.chunk.js.map",
-    "static/js/3.35f59cb0.chunk.js": "/static/js/3.35f59cb0.chunk.js",
-    "static/js/3.35f59cb0.chunk.js.map": "/static/js/3.35f59cb0.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.c984a218.chunk.css.map": "/static/css/2.c984a218.chunk.css.map",
-    "static/js/2.13cc9c15.chunk.js.LICENSE.txt": "/static/js/2.13cc9c15.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/static/media/roboto-vietnamese-400-normal.52cebac0.woff2"
+    "main.js": "/userscontroll/static/js/main.20097bee.chunk.js",
+    "main.js.map": "/userscontroll/static/js/main.20097bee.chunk.js.map",
+    "runtime-main.js": "/userscontroll/static/js/runtime-main.3f98f35b.js",
+    "runtime-main.js.map": "/userscontroll/static/js/runtime-main.3f98f35b.js.map",
+    "static/css/2.2fe4bc90.chunk.css": "/userscontroll/static/css/2.2fe4bc90.chunk.css",
+    "static/js/2.eca19a9b.chunk.js": "/userscontroll/static/js/2.eca19a9b.chunk.js",
+    "static/js/2.eca19a9b.chunk.js.map": "/userscontroll/static/js/2.eca19a9b.chunk.js.map",
+    "static/js/3.c9582703.chunk.js": "/userscontroll/static/js/3.c9582703.chunk.js",
+    "static/js/3.c9582703.chunk.js.map": "/userscontroll/static/js/3.c9582703.chunk.js.map",
+    "index.html": "/userscontroll/index.html",
+    "static/css/2.2fe4bc90.chunk.css.map": "/userscontroll/static/css/2.2fe4bc90.chunk.css.map",
+    "static/js/2.eca19a9b.chunk.js.LICENSE.txt": "/userscontroll/static/js/2.eca19a9b.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/userscontroll/static/media/roboto-vietnamese-400-normal.52cebac0.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.9ddc20fd.js",
-    "static/css/2.c984a218.chunk.css",
-    "static/js/2.13cc9c15.chunk.js",
-    "static/js/main.ca733fc0.chunk.js"
+    "static/js/runtime-main.3f98f35b.js",
+    "static/css/2.2fe4bc90.chunk.css",
+    "static/js/2.eca19a9b.chunk.js",
+    "static/js/main.20097bee.chunk.js"
   ]
 }
