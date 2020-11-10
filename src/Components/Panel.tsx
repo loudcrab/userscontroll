@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Box, Grid } from '@material-ui/core';
 import { Button } from './Button';
 import { useUsersContext } from '../store/users';
+
 export const Panel = () => {
 	const { update, save, remove, add, addProperty, selectedUser, isEdited } = useUsersContext();
 

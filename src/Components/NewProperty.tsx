@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { createModal } from 'react-modal-promise';
 
-import { Box, Input, MenuItem, Select, TextField, Checkbox, ListItemText, Grid, InputLabel } from '@material-ui/core';
+import { Box, Input, MenuItem, Select, Grid, InputLabel } from '@material-ui/core';
 
 import { Button } from './Button';
 
-const CreateNewProperty = ({close} : any) => {
+const CreateNewProperty = ({ close }: any) => {
 	const [ title, setTitle ] = useState('');
-    const [ type, setType ] = useState('string');
-    
-    const handleClose = ()=> close()
-    const handleSave = ()=> close({title, type})
+	const [ type, setType ] = useState('string');
+
+	const handleClose = () => close();
+	const handleSave = () => close({ title, type });
 	return (
 		<Box
 			p="12px"
@@ -40,10 +40,8 @@ const CreateNewProperty = ({close} : any) => {
 				<Grid item xs>
 					<Button onClick={handleSave}>Сохранить</Button>
 				</Grid>
-				<Grid item xs >
-					<Button   onClick={handleClose}>
-						Отмена
-					</Button>
+				<Grid item xs>
+					<Button onClick={handleClose}>Отмена</Button>
 				</Grid>
 			</Grid>
 		</Box>

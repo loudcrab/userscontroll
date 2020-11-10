@@ -1,26 +1,40 @@
-export interface user {   
+export interface User {   
   id: number
   name: string
-  position: position
+  position: Position
   birthday: string
-  sex: sex
+  sex: Sex
   fired: boolean
   сolleagues: Array<number> | null
   [key:string] : any
   }
   
-  export type users =  Array<user>
+  export type Users =  Array<User>
   
   
-  export type position = 'Тимлид'| 'Фронт' |'Бэк'|'Дэвопс'|'Продукт'|'Аналитик'
-  export type sex = 'male' | 'female' | 'other'
+  export type Position = 'Тимлид'| 'Фронт' |'Бэк'|'Дэвопс'|'Продукт'|'Аналитик'
+  export type Sex = 'male' | 'female' | 'other'
   
-  export interface action {
+  export interface Action {
     type: string,
     [key: string]: any
 }
 
-export interface payload {
-    state : users
-    action : action
+export interface Payload {
+    state : Users
+    action : Action
+}
+
+
+export type Type = 'string' | 'boolean' | 'number' | 'date';
+export interface ICustomProps {
+	[key: string]: {
+		value: string;
+		type: Type;
+	};
+}
+
+export interface Input_type {
+	onChange: Function;
+	value: string;
 }

@@ -1,4 +1,4 @@
-import { users } from "./types"
+import { Users } from "./types"
 
 export const getUsers = async () =>{     
    try {
@@ -9,7 +9,7 @@ export const getUsers = async () =>{
    }
 }
 
-export const saveUsers = async (users : users)=>{
+export const saveUsers = async (users : Users)=>{
     return localStorage.setItem('usersStorage', JSON.stringify(users))
 }
 

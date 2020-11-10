@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { Box, Input, MenuItem, Select, TextField, Checkbox, ListItemText, Grid, InputLabel } from '@material-ui/core';
 
 import { positionOptions, sexOptions, useUsersContext } from '../store/users';
-import { users, user } from '../store/types';
+import { ICustomProps, User, Input_type } from '../store/types';
 
 export const List = () => {
 	return (
@@ -29,7 +29,7 @@ const Users = () => {
 	return (
 		<Grid container spacing={8}>
 			<Grid item xs={6}>
-				{users.map((item: user, idx: number) => {
+				{users.map((item: User, idx: number) => {
 					return (
 						<MenuItem
 							onClick={(e) => {
@@ -130,7 +130,7 @@ const User = ({ changeField, selectedUser }: { changeField: Function; selectedUs
 			</Box>
 			<Box paddingTop="8px">
 				<InputLabel />
-				<CustomPropsBlock  />
+				<CustomPropsBlock />
 			</Box>
 		</Box>
 	);
@@ -176,10 +176,10 @@ const SelectColleagues = ({ сolleagues, onChange }: { сolleagues: Array<string
 
 const CustomPropsBlock = () => {
 	const { updateUser, selectedUser } = useUsersContext();
-	const customProps : iCustomProps = selectedUser.customProps
-	console.log(selectedUser,)
+	const customProps: ICustomProps = selectedUser.customProps;
+	console.log(selectedUser);
 	const handleChange = (props: any) => {
-		updateUser({...props, customProps: true})
+		updateUser({ ...props, customProps: true });
 	};
 
 	const Block = () => {
@@ -211,7 +211,7 @@ const CustomPropsBlock = () => {
 };
 
 const INPUT_TYPE = {
-	string: ({ onChange, value }: input_type) => (
+	string: ({ onChange, value }: Input_type) => (
 		<Input
 			value={value}
 			onChange={(e) => {
@@ -219,7 +219,7 @@ const INPUT_TYPE = {
 			}}
 		/>
 	),
-	date: ({ onChange, value }: input_type) => (
+	date: ({ onChange, value }: Input_type) => (
 		<TextField
 			value={value}
 			type="date"
@@ -228,7 +228,7 @@ const INPUT_TYPE = {
 			}}
 		/>
 	),
-	number: ({ onChange, value }: input_type) => (
+	number: ({ onChange, value }: Input_type) => (
 		<Input
 			value={value}
 			onChange={(e) => {
@@ -236,7 +236,7 @@ const INPUT_TYPE = {
 			}}
 		/>
 	),
-	boolean: ({ onChange, value }: input_type) => (
+	boolean: ({ onChange, value }: Input_type) => (
 		<Checkbox
 			value={value}
 			onChange={(e) => {
@@ -245,16 +245,3 @@ const INPUT_TYPE = {
 		/>
 	)
 };
-
-type type = 'string' | 'boolean' | 'number' | 'date';
-interface iCustomProps {
-	[key: string]: {
-		value: string;
-		type: type;
-	};
-}
-
-interface input_type {
-	onChange: Function;
-	value: string;
-}

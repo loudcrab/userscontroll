@@ -1,4 +1,4 @@
-import { users, action } from "./types"
+import { Users, Action } from "./types"
 import { emptyUser } from "./users"
 
 
@@ -10,7 +10,7 @@ export const ADD_NEW_USER = 'ADD_NEW_USER'
 export const SAVE_ALL = 'SAVE_ALL'
 export const DELETE_USERS = 'DELETE_USERS'
 
-export const reducer = (state : any, action : action): users => {  
+export const reducer = (state : any, action : Action): Users => {  
   const idx = state?.users?.findIndex(({id}: {id:number})=> state.selectedUser?.id === id)  
     switch (action.type) {
       case SAVE_ALL:   
